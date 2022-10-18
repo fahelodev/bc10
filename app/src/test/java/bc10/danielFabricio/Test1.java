@@ -37,6 +37,7 @@ public class Test1 {
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
     }
 
     @Test
@@ -49,6 +50,7 @@ public class Test1 {
         Assertions.assertEquals(800,width);
         Assertions.assertEquals(600,heigth);
         System.out.println("La nueva resolucion de pantalla es : " + driver.manage().window().getSize());
+
 
         // validacion boton filter by Name
         WebElement inputB = driver.findElement(inputBlanck);
@@ -67,6 +69,7 @@ public class Test1 {
         WebElement casa = driver.findElement(home);
         casa.click();
 
+
         Actions action = new Actions(driver);
 
         WebElement cname = driver.findElement(computerName);
@@ -78,6 +81,8 @@ public class Test1 {
         action.moveToElement(discont).click().perform();
         WebElement cpany = driver.findElement(company);
         action.moveToElement(cpany).click().perform();
+
+
 
 
 
