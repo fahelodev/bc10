@@ -13,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
+import java.util.List;
 
 public class WebElements {
     WebDriver driver;
@@ -39,6 +40,12 @@ public class WebElements {
 
     @FindBy(id = "ui-id-5")
     WebElement elultimo;
+
+    @FindBy(xpath = "//input[1]")
+    WebElement check1;
+
+    @FindBy(xpath = "//input[2]" )
+    WebElement check2;
 
 
 
@@ -94,6 +101,49 @@ public class WebElements {
         elultimo.click();
     }
 
+    @Test
+    public void checkBox(){
+        driver.get("https://the-internet.herokuapp.com/checkboxes");
+        check1.click();
+        boolean estacliqueado = check1.isSelected();
+
+        check2.click();
+        boolean estaseliado2 = check2.isSelected();
+
+    }
+
+    @Test
+    public void iFrame(){
+        driver.navigate().to("https://the-internet.herokuapp.com/iframe");
+        List<WebElement> iframe = driver.findElements(By.tagName("iframe"));
+        driver.switchTo().frame(iframe.get(0));
+        WebElement areEscritura = driver.findElement(By.id("tinymce"));
+        areEscritura.clear();
+        areEscritura.sendKeys("Hola como estas ");
+
+
+
+    }
+
+    @Test
+    public void tablasWeb(){
+        //tabla 1 - ordenar tabla por deuda de mayor a menor
+        driver.navigate().to("https://the-internet.herokuapp.com/tables");
+        List<WebElement> webTables = driver.findElements(By.tagName("table"));
+        WebElement tabla1 = webTables.get(0);
+        List<WebElement> filas = tabla1.findElement(By.tagName("tbody")).findElements(By.tagName("tr"));
+        List<WebElement> columnas = tabla1.findElement(By.tagName("thead")).findElements(By.tagName("th"));
+
+        if(columnas.get(3).getText().contains("Due")){
+            columnas.get(3).click();
+            columnas.get(3).click();
+
+        }
+        String nombre = filas.get(0).findElement(By.xpath("//td[2]")).getText();
+        String apellido = filas.get(0).findElement(By.xpath("//td[1]")).getText();
+        String deuda  = filas.get(0).findElement(By.xpath("//td[4]")).getText();
+
+    }
 
 
 
