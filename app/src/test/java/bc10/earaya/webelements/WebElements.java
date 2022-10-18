@@ -10,10 +10,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-<<<<<<< HEAD
+
 import org.openqa.selenium.support.ui.Select;
-=======
->>>>>>> d289d21b1d197568d76059e8121a128d72dd5e29
+
 
 import java.time.Duration;
 import java.util.List;
@@ -59,11 +58,11 @@ public class WebElements {
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-<<<<<<< HEAD
+
         PageFactory.initElements(driver, this);//Para crear una instancia de los elementos
-=======
+
         PageFactory.initElements(driver,this);
->>>>>>> d289d21b1d197568d76059e8121a128d72dd5e29
+
     }
 
     @Test
