@@ -9,6 +9,9 @@ public class Test1 extends TestBase {
 
     @Test
     public void test1(){
-        gatlingHomePage = new GatlingHomePage(gatlingHomePage).IrAhomePage();
+        gatlingHomePage = new GatlingHomePage(driver);
+        gatlingHomePage.IrAhomePage();
+        gatlingHomePage.validarDespliegueBotones();
+        gatlingHomePage.validarDespliegueColumnas();
     }
 }

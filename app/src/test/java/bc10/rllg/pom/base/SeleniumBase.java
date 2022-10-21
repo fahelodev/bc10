@@ -4,7 +4,6 @@ package bc10.rllg.pom.base;
     enmascarar la tegnologia selenium - wrapper
      */
 
-import bc10.earaya.webelements.WebElements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +39,7 @@ public class SeleniumBase {
         driver.findElement(locator).sendKeys(inputText);
     }
 
-    public void clikear(By locator){
+    public void clickear(By locator){
         driver.findElement(locator).click();
     }
 
