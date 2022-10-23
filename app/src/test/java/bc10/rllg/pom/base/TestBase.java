@@ -12,20 +12,22 @@ import java.time.Duration;
 public class TestBase {
     //Atributos
     public WebDriver driver;
+
     @BeforeAll
-    public static void initTesting(){
+    public static void initTesting() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeEach
-    public void SetUp(){
+    public void SetUp() {
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1500));
     }
+
     @AfterEach
-    public void Close(){
-        if(driver!=null){
+    public void Close() {
+        if (driver != null) {
             driver.close();
         }
     }
