@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -15,7 +16,6 @@ public class SeleniumBase {
     //atributo
     private WebDriver driver;
     //contructor
-
     public SeleniumBase(WebDriver driver) {
         this.driver = driver;
     }
@@ -25,10 +25,6 @@ public class SeleniumBase {
     }
     public WebElement encontrarElemnto (By locator){
         return driver.findElement(locator);
-    }
-
-    public List<WebElement> encontrarElementos (By locator){
-        return driver.findElements(locator);
     }
 
     public String obtenerTexto (By locator){
@@ -50,23 +46,26 @@ public class SeleniumBase {
             return false;
         }
     }
-    public Boolean estaSeleccionado(By locator) {
-        try {
-            return driver.findElement(locator).isSelected();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
-    }
     public void cambiarTamanhoDriver(int withd,int heigth){
         driver.manage().window().setSize(new Dimension(withd,heigth));
     }
+
     public int obtenerAltura(){
-        return driver.manage().window().getSize().width;
+        return driver.manage().window().getSize().height;
     }
     public int obtenerAncho(){
-        return driver.manage().window().getSize().height;
+        return driver.manage().window().getSize().width;
     }
     public WebDriver getDriver(){
         return driver;
     }
+    public void maximizar(){
+        driver.manage().window().maximize();
+    }
+    public void seleccionarTextoVisible(By locator, String dato){
+        WebElement elemento = driver.findElement(locator);
+        Select seleccionar = new Select(elemento);
+        seleccionar.selectByVisibleText(dato);
+    }
+
 }
