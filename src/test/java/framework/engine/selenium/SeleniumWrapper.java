@@ -1,20 +1,22 @@
-package Vuelos.pom;
+package framework.engine.selenium;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class SeleniumBase {
-    private WebDriver driver;
-    public SeleniumBase(WebDriver driver){
+public class SeleniumWrapper {
+
+    private final WebDriver driver;
+
+    //Constructor Base
+    public SeleniumWrapper(WebDriver driver){
         this.driver = driver;
     }
 
-    public void NavegarAPagina(String url){
-        driver.navigate().to(url);
-    }
+    //Wrappers Selenium
     public WebElement findElement(By locator){
         return driver.findElement(locator);
     }
@@ -27,8 +29,12 @@ public class SeleniumBase {
         return driver.findElement(locator).getText();
     }
 
-    public void type(String inputText, By locator){
+    public void write(String inputText, By locator){
+        isDisplayed(locator);
         driver.findElement(locator).sendKeys(inputText);
+    }
+    public void sendKeys(Keys key, By locator){
+        driver.findElement(locator).sendKeys(key);
     }
 
     public void click(By locator){
@@ -42,6 +48,14 @@ public class SeleniumBase {
             return false;
         }
     }
+    public Boolean isEnabled(By locator) {
+        try {
+            return driver.findElement(locator).isEnabled();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
+
     public Boolean isSelected(By locator) {
         try {
             return driver.findElement(locator).isSelected();
@@ -49,4 +63,13 @@ public class SeleniumBase {
             return false;
         }
     }
+
+    public void navigateTo(String url){
+        driver.navigate().to(url);
+    }
+
+    public String getUrlTitle(){
+        return driver.getTitle();
+    }
+
 }

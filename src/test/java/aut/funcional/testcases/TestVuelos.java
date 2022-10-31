@@ -1,6 +1,7 @@
 package Vuelos.Test;
 
-import Vuelos.pom.base.SeleniumBase;
+import Vuelos.pom.SeleniumBase;
+//import Vuelos.pom.base.SeleniumBase;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -12,7 +13,7 @@ public class TestVuelos extends SeleniumBase {
     public TestVuelos(WebDriver driver){
         super(driver);
     }
-  //  @Test
+    @Test
     public void Test1(){
         NavegarAPagina(UrlHome);
     }
