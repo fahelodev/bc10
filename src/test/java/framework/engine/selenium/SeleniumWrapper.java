@@ -1,10 +1,8 @@
 package framework.engine.selenium;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeleniumWrapper {
@@ -25,8 +23,18 @@ public class SeleniumWrapper {
         return driver.findElements(locator);
     }
 
+    public void cambiarPag (){
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(0));
+        driver.close();
+        driver.switchTo().window(tabs2.get(1));}
+
     public String getText (By locator){
         return driver.findElement(locator).getText();
+    }
+
+    public void setSize(int width, int height){
+        driver.manage().window().setSize(new Dimension(width, height));
     }
 
     public void write(String inputText, By locator){
