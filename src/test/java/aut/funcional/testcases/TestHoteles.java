@@ -59,6 +59,4 @@ public class TestHoteles extends SeleniumTestBase {
         hotelesHomePage.aceptarCoockies();
         hotelesHomePage.Llamanos();
     }
-
-
 }
