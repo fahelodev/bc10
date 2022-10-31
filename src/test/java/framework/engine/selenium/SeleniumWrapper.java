@@ -5,16 +5,19 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeleniumWrapper {
 
-    private final WebDriver driver;
+    protected final WebDriver driver;
 
     //Constructor Base
     public SeleniumWrapper(WebDriver driver){
         this.driver = driver;
     }
+
+
 
     //Wrappers Selenium
     public WebElement findElement(By locator){
@@ -24,6 +27,12 @@ public class SeleniumWrapper {
     public List<WebElement> findElements (By locator){
         return driver.findElements(locator);
     }
+
+    public void cambiarPag (){
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(0));
+        driver.close();
+        driver.switchTo().window(tabs2.get(1));}
 
     public String getText (By locator){
         return driver.findElement(locator).getText();

@@ -1,4 +1,7 @@
 package aut.funcional.testcases;
 
-public class TestCrucero {
+import framework.engine.selenium.SeleniumTestBase;
+
+public class TestCrucero{
+
 }
