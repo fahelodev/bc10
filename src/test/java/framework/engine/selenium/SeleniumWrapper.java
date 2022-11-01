@@ -1,7 +1,10 @@
 package framework.engine.selenium;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,15 @@ public class SeleniumWrapper {
         driver.close();
         driver.switchTo().window(tabs2.get(1));}
 
+    public void waitElemtToBeClickable(int tiempo,By locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(tiempo));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void scroll(int xPixeles, int yxPixeles){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy("+xPixeles+","+yxPixeles+")");
+    }
     public String getText (By locator){
         return driver.findElement(locator).getText();
     }
