@@ -1,10 +1,17 @@
 package aut.funcional.pages;
 
 import framework.engine.selenium.SeleniumWrapper;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 
@@ -42,8 +49,8 @@ public class HotelesHomePage extends SeleniumWrapper {
 
     By desplegableParaElegirClaseHotelesVUELOS = By.xpath("(//button[@class=\"display-vu9q0w-Dropdown-styled\"])[3]");
     By clickearParaElegirOpcionTuristaEnClaseHotelesVUELOS = By.xpath("(//div[@class=\"display-1q5nlab-Radio-styled\"])[2]");
-    By clickearLaPrimeraOpcionDeHotelesVUELOS = By.xpath("//div[@class=\"sc-dFdIVH dTajMS openx-ui-card-label\"]");
-    By clickearLaPrimeraOpcionDeHotelesVUELOSOtraVez = By.xpath("(//div[@class=\"sc-iAvgwm iHNJTW\"])[1]");
+    By clickearLaPrimeraOpcionDeHotelesVUELOS = By.xpath("(//div[@class=\"sc-jIAOiI dgepDH\"]//a)");
+    By clickearLaPrimeraOpcionDeHotelesVUELOSOtraVez = By.xpath("//a[@class=\"sc-idiyUo hAMAFs\"]");
     By clickearEnBotonContinuarAbajoEnOpcionDeElegir = By.xpath("(//div[@class=\"RoomPanelMealPlan___StyledDiv2-sc-u6tmcf-18 bUeODJ\"])[1]");
     By clickearEnEligeTRAVELExtra = By.xpath("//button[@class=\"Button-sc-1bbve8d-0 hFahzb\"]");
 
@@ -62,6 +69,14 @@ public class HotelesHomePage extends SeleniumWrapper {
 
     By mensajeDondeFaltaTexto = By.xpath("//span[@class=\"display-1jbu58d-ValidationMessage-styled-ValidationMessage-styled-ValidationMessage-styled\"]");
 
+    By mensajeAlojamientoParaCualquierDestino = By.xpath("//div[@class=\"sc-gsnTZi cxinWN openx-ui-main-title\"]");
+
+    By mensajeParaValidarQueLlegoAlFormulario = By.xpath("//div[@class=\"welcome__claim-title\"]");
+
+    By mensajeParaValidadQueSeRecorrioLaPag = By.xpath("//h2[normalize-space()='Pago fraccionado']");
+
+    By mensajeParaValidarQueEstamosEnLLAMANOS = By.xpath("//span[normalize-space()='Nos encontrarás de lunes a viernes, de 9:00 h a 20:00 h y los sábados y domingos de 10:00 h a 19:00 h.']");
+
     public HotelesHomePage(WebDriver driver) {
         super(driver);
     }
@@ -74,6 +89,26 @@ public class HotelesHomePage extends SeleniumWrapper {
 
     public String mensajeError(){
         return getText(mensajeDondeFaltaTexto);
+    }
+
+    public String mensajeAlojamientosParaCualquierDestino(){
+        return getText(mensajeAlojamientoParaCualquierDestino);
+    }
+
+    public String mensajeValidacionAForm(){
+        return getText(mensajeParaValidarQueLlegoAlFormulario);
+    }
+
+    public String mensajeRecorrePag() {
+        return getText(mensajeParaValidadQueSeRecorrioLaPag);
+    }
+
+    public String mensajeParaValidarLlamanos(){
+        return getText(mensajeParaValidarQueEstamosEnLLAMANOS);
+    }
+    public void capturaPantalla() throws IOException {
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile,new File("C:\\Users\\florencia.lorenzati\\IdeaProjects\\bc101\\src\\test\\java\\aut\\funcional\\testcases\\capturas","VariosFiltros.png"));
     }
 
     public void HotelesDisponibles(){
@@ -94,13 +129,12 @@ public class HotelesHomePage extends SeleniumWrapper {
         click(clickearBotonBuscarHOTELES);
     }
 
-    public void VariosFiltros(){
+    public void VariosFiltros() {
         click(botonParaFiltrosCancelacionGratuita);
         click(botonParaFiltrosWifiGratis);
         click(desplegableParaFiltrosEstrellas);
         click(checkboxParaSeleccionar5Estrellas);
         click(botonAplicarPara5Estrellas);
-
     }
 
     public void FormularioCombo() throws InterruptedException {
@@ -112,14 +146,13 @@ public class HotelesHomePage extends SeleniumWrapper {
         click(clickearParaRestarPasajerosHotelesVUELOS);
         click(clickearBotonBuscarHotelesVUELOS);
         click(clickearLaPrimeraOpcionDeHotelesVUELOS);
+        waitElemtToBeClickable(10,clickearLaPrimeraOpcionDeHotelesVUELOSOtraVez);
         click(clickearLaPrimeraOpcionDeHotelesVUELOSOtraVez);
-        Thread.sleep(20);
         cambiarPag();
+        waitElemtToBeClickable(10,clickearEnBotonContinuarAbajoEnOpcionDeElegir);
         click(clickearEnBotonContinuarAbajoEnOpcionDeElegir);
-        Thread.sleep(10000);
+        waitElemtToBeClickable(10,clickearEnEligeTRAVELExtra);
         click(clickearEnEligeTRAVELExtra);
-
-
     }
 
     public void RecorrerPagina(){
@@ -129,15 +162,16 @@ public class HotelesHomePage extends SeleniumWrapper {
         click(clickearOfertasMiniprecioHOTELES);
         driver.navigate().back();
         click(clickearPagoFraccionadoHOTELES);
-        click(clickearEchaleUnVistazoHOTELES);
     }
 
     public void Llamanos(){
         click(botonHotelesEnNavbarLoc);
         click(clickearEnOfertaVacacionesPorEspaniaHOTELES);
         cambiarPag();
+        waitElemtToBeClickable(5,clickearLaOpcionLlamanos1);
         click(clickearLaOpcionLlamanos1);
         cambiarPag();
+        waitElemtToBeClickable(5,clickearLaOpcionLlamanos2);
         click(clickearLaOpcionLlamanos2);
     }
 }
