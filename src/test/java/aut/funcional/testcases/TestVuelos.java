@@ -1,20 +1,40 @@
-package Vuelos.Test;
+package aut.funcional.testcases;
 
-import Vuelos.pom.SeleniumBase;
-//import Vuelos.pom.base.SeleniumBase;
+import aut.funcional.pages.VuelosHomePage;
+import framework.engine.selenium.DriverFactory;
+import framework.engine.selenium.SeleniumTestBase;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import static framework.engine.utils.Constants.BASE_URL_AUT;
 
-public class TestVuelos extends SeleniumBase {
-    String UrlHome ="https://www.rumbo.es/";
-    //By btnVuelos = By.xpath("//a[@class='evvzyi82 display-1xmtdkn-HubAnchor-styles-MenuLink e89md6u0']");
+public class TestVuelos extends SeleniumTestBase {
+    VuelosHomePage vuelosHomePage;
 
-
-    public TestVuelos(WebDriver driver){
-        super(driver);
-    }
     @Test
-    public void Test1(){
-        NavegarAPagina(UrlHome);
+    public void Test1Vuelos() throws InterruptedException {
+        vuelosHomePage = new VuelosHomePage(DriverFactory.getDriver());
+        vuelosHomePage.NavegarAHomeYCampos();
+        Assertions.assertEquals("Ya casi has terminado: introduce los datos de los pasajeros",vuelosHomePage.TituloTest1());
     }
+
+    @Test
+    public void Test2Vuelos() throws InterruptedException {
+        vuelosHomePage = new VuelosHomePage(DriverFactory.getDriver());
+        vuelosHomePage.LlegarAFormulario();
+    //    Assertions.assertEquals("¡Listo! Elige cómo pagar ¡y a viajar!",vuelosHomePage.TituloTest1());
+    }
+
+
+
+
+    @Test
+    public void Test5Vuelos(){
+        vuelosHomePage = new VuelosHomePage(DriverFactory.getDriver());
+        vuelosHomePage.navegarAlHome();
+        Assertions.assertEquals("Vuelos baratos a las localidades más solicitadas",vuelosHomePage.TituloTest5());
+    }
+
+
 }
