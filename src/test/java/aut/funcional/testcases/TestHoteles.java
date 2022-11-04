@@ -6,6 +6,8 @@ import framework.engine.selenium.SeleniumTestBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 public class TestHoteles extends SeleniumTestBase {
     HotelesHomePage hotelesHomePage;
 
@@ -17,6 +19,7 @@ public class TestHoteles extends SeleniumTestBase {
         hotelesHomePage.navegarAlHome();
         hotelesHomePage.aceptarCoockies();
         hotelesHomePage.HotelesDisponibles();
+        Assertions.assertEquals("Alojamientos para cualquier destino",hotelesHomePage.mensajeAlojamientosParaCualquierDestino());
     }
 
     @Test
@@ -30,12 +33,14 @@ public class TestHoteles extends SeleniumTestBase {
     }
 
     @Test
-    public void RealizarBusquedaConVariosFiltros(){
+    public void RealizarBusquedaConVariosFiltros() throws InterruptedException, IOException {
         hotelesHomePage = new HotelesHomePage(DriverFactory.getDriver());
         hotelesHomePage.navegarAlHome();
         hotelesHomePage.aceptarCoockies();
         hotelesHomePage.HotelesDisponibles();
         hotelesHomePage.VariosFiltros();
+        Thread.sleep(5000);
+        hotelesHomePage.capturaPantalla();
     }
     @Test
     public void VisualizarFormularioDeReservaDeCombo() throws InterruptedException {
@@ -43,7 +48,7 @@ public class TestHoteles extends SeleniumTestBase {
         hotelesHomePage.navegarAlHome();
         hotelesHomePage.aceptarCoockies();
         hotelesHomePage.FormularioCombo();
-
+        Assertions.assertEquals("Diseña tu viaje añadiendo los servicios que necesites",hotelesHomePage.mensajeValidacionAForm());
     }
     @Test
     public void RecorrerPaginaDeHotel(){
@@ -51,6 +56,7 @@ public class TestHoteles extends SeleniumTestBase {
         hotelesHomePage.navegarAlHome();
         hotelesHomePage.aceptarCoockies();
         hotelesHomePage.RecorrerPagina();
+        Assertions.assertEquals("Pago fraccionado",hotelesHomePage.mensajeRecorrePag());
     }
     @Test
     public void ConsultaInformacionLlamando(){
@@ -58,7 +64,6 @@ public class TestHoteles extends SeleniumTestBase {
         hotelesHomePage.navegarAlHome();
         hotelesHomePage.aceptarCoockies();
         hotelesHomePage.Llamanos();
+        Assertions.assertEquals("Nos encontrarás de lunes a viernes, de 9:00 h a 20:00 h y los sábados y domingos de 10:00 h a 19:00 h.",hotelesHomePage.mensajeParaValidarLlamanos());
     }
-
-
 }
