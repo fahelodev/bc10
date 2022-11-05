@@ -37,6 +37,11 @@ public class SeleniumWrapper {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    public void implicitlyWaitOfMillis(int millis){
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(millis));
+    }
+
+
     public void scroll(int xPixeles, int yxPixeles){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy("+xPixeles+","+yxPixeles+")");

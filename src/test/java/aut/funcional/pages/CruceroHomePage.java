@@ -2,12 +2,7 @@ package aut.funcional.pages;
 
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 
@@ -38,7 +33,6 @@ public class CruceroHomePage extends SeleniumWrapper {
     By textoACompararDespuesDelFormLoc = By.xpath("//header[@class = \"crs_search_box__header ng-star-inserted\"]/h1");
     By clickEnDescubreOfertaLoc = By.xpath("(//a[@class = \"more\"])[1]");
     By clickEnDetalleDeCruceroLoc = By.xpath("(//button[@class = \"crs-btn crs-btn--cta crs-btn--small crs-btn--contain\"])[1]");
-    By clikEnDetalleDeCruceroDelFormLoc = By.xpath("(//button[@class = \"crs-btn crs-btn--cta crs-btn--small crs-btn--contain ng-star-inserted\"])[1]");
     By btnSolicitarProsupuestoLoc = By.xpath("//button[@class = \"crs-btn crs-btn--cta crs-btn--contain crs-btn--block ng-star-inserted\"]");
     By campoNombreLoc = By.xpath("//input[@placeholder=\"Inserta tu nombre\"]");
     By campoApellidoLoc = By.xpath("//input[@placeholder=\"Inserta tu apellido\"]");
@@ -53,7 +47,6 @@ public class CruceroHomePage extends SeleniumWrapper {
     By elegirPrecioMasBajoPrimeroLoc = By.xpath("//li[@aria-label = \"Precio (más bajo primero)\"]");
     By textoAcompararParaPrecioMasBajoPrimeroLoc = By.xpath("//span[@id = \"pr_id_2_label\"]");
     // Para vereficar el comportamiento de las opciones
-    By clickOpcion1Loc = By.xpath("(//nav[@class = \"swiper-wrapper crs-pd-nav\"]/div)[1]");
     By clickOpcion2Loc = By.xpath("(//nav[@class = \"swiper-wrapper crs-pd-nav\"]/div)[2]");
     By clickOpcion3Loc = By.xpath("(//nav[@class = \"swiper-wrapper crs-pd-nav\"]/div)[3]");
     By clickOpcion4Loc = By.xpath("(//nav[@class = \"swiper-wrapper crs-pd-nav\"]/div)[4]");
@@ -94,18 +87,22 @@ public class CruceroHomePage extends SeleniumWrapper {
         click(clickEnDescubreOfertaLoc);
         click(clickEnDetalleDeCruceroLoc);
         cambiarPag();
-        waitElemtToBeClickable(15,btnSolicitarProsupuestoLoc);
+        waitElemtToBeClickable(10,btnSolicitarProsupuestoLoc);
         click(btnSolicitarProsupuestoLoc);
-        waitElemtToBeClickable(15,campoNombreLoc);
+        waitElemtToBeClickable(10,campoNombreLoc);
         click(campoNombreLoc);
         write("ka",campoNombreLoc);
         write("Ki",campoApellidoLoc);
         write("111111",campoTelefonoLoc);
         click(aceptarPoliticaDePrivacidad);
+        waitElemtToBeClickable(5,btnAceptarFormLoc);
         click(btnAceptarFormLoc);
+
+
     }
 
     public String textoACompararDelFormIncompleto(){
+        waitElemtToBeClickable(5,textErrorAcompararLoc);
         return getText(textErrorAcompararLoc);
     }
     //Fin Test3
@@ -118,9 +115,13 @@ public class CruceroHomePage extends SeleniumWrapper {
         click(clickEnDescubreOfertaLoc);
         click(clickEnDetalleDeCruceroLoc);
         cambiarPag();
+        waitElemtToBeClickable(2,clickOpcion2Loc);
         click(clickOpcion2Loc);
+        waitElemtToBeClickable(2,clickOpcion3Loc);
         click(clickOpcion3Loc);
+        waitElemtToBeClickable(2,clickOpcion4Loc);
         click(clickOpcion4Loc);
+        waitElemtToBeClickable(2,clickOpcion5Loc);
         click(clickOpcion5Loc);
     }
 
@@ -134,13 +135,18 @@ public class CruceroHomePage extends SeleniumWrapper {
         click(btnVerMas800x600Loc);
         click(btnCrucero800x600Loc);
         click(clickEnDescubreOfertaLoc);
-        waitElemtToBeClickable(20,clickEnDetalleDeCruceroLoc);
+        scroll(0,2100);
+        waitElemtToBeClickable(5,clickEnDetalleDeCruceroLoc);
         click(clickEnDetalleDeCruceroLoc);
         cambiarPag();
         scroll(0,1200);
+        waitElemtToBeClickable(2,clickOpcion2Loc);
         click(clickOpcion2Loc);
+        waitElemtToBeClickable(2,clickOpcion3Loc);
         click(clickOpcion3Loc);
+        waitElemtToBeClickable(2,clickOpcion4Loc);
         click(clickOpcion4Loc);
+        waitElemtToBeClickable(2,clickOpcion5Loc);
         click(clickOpcion5Loc);
     }
     public Boolean elementoEncontradoAldarLaOpcion(){

@@ -1,7 +1,6 @@
 package framework.engine.selenium;
 
 import framework.engine.utils.LoadProperties;
-import io.qameta.allure.Description;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
