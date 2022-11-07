@@ -1,13 +1,8 @@
 package aut.funcional.pages;
 
 import framework.engine.selenium.SeleniumWrapper;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
-import java.io.File;
 import java.io.IOException;
 
 
@@ -95,8 +90,7 @@ public class HotelesHomePage extends SeleniumWrapper {
         return getText(mensajeParaValidarQueEstamosEnLLAMANOS);
     }
     public void capturaPantalla() throws IOException {
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File("C:\\Users\\florencia.lorenzati\\IdeaProjects\\bc101\\src\\test\\java\\aut\\funcional\\testcases\\capturas","VariosFiltros.png"));
+        capturaPantalla("C:\\Users\\florencia.lorenzati\\IdeaProjects\\bc101\\src\\test\\java\\aut\\funcional\\testcases\\capturas","VariosFiltros.png");
     }
 
     public void HotelesDisponibles(){

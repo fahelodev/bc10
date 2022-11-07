@@ -1,16 +1,19 @@
 package framework.engine.selenium;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SeleniumWrapper {
 
-    private final WebDriver driver;
+    public final WebDriver driver;
 
     //Constructor Base
     public SeleniumWrapper(WebDriver driver){
@@ -96,5 +99,11 @@ public class SeleniumWrapper {
     public String getUrlTitle(){
         return driver.getTitle();
     }
+
+    public void capturaPantalla(String direccion, String s) throws IOException {
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile,new File(direccion));
+    }
+
 
 }
