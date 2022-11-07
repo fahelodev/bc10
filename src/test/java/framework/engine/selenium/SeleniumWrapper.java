@@ -1,9 +1,6 @@
 package framework.engine.selenium;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,8 +26,32 @@ public class SeleniumWrapper {
         return driver.findElements(locator);
     }
 
+    public void cambiarPag (){
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(0));
+        driver.close();
+        driver.switchTo().window(tabs2.get(1));}
+
+    public void waitElemtToBeClickable(int tiempo,By locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(tiempo));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void implicitlyWaitOfMillis(int millis){
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(millis));
+    }
+
+
+    public void scroll(int xPixeles, int yxPixeles){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy("+xPixeles+","+yxPixeles+")");
+    }
     public String getText (By locator){
         return driver.findElement(locator).getText();
+    }
+
+    public void setSize(int width, int height){
+        driver.manage().window().setSize(new Dimension(width, height));
     }
 
     public void write(String inputText, By locator){
@@ -74,17 +95,6 @@ public class SeleniumWrapper {
 
     public String getUrlTitle(){
         return driver.getTitle();
-    }
-
-    public void cambiarPag (){
-        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs2.get(0));
-        driver.close();
-        driver.switchTo().window(tabs2.get(1));}
-
-    public void waitElemtToBeClickable(int tiempo,By locator){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(tiempo));
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
 }
