@@ -102,7 +102,7 @@ public class SeleniumWrapper {
 
     public void capturaPantalla(String direccion, String s) throws IOException {
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(direccion));
+        FileUtils.copyFile(scrFile,new File(direccion,s));
     }
 
 

@@ -23,8 +23,8 @@ public class HotelesHomePage extends SeleniumWrapper {
 
     By botonParaFiltrosCancelacionGratuita = By.xpath("(//div[@class=\"styled__Text-sc-ncpwe6-1 dKelni\"])[1]");
     By botonParaFiltrosWifiGratis = By.xpath("(//div[@class=\"styled__Text-sc-ncpwe6-1 dKelni\"])[2]");
-    By desplegableParaFiltrosEstrellas = By.xpath(" //span[normalize-space()=\"Estrellas\"]");
-    By checkboxParaSeleccionar5Estrellas = By.xpath("(//div[@class='sc-jIZahH jGWyuJ'])[1]");
+    By desplegableParaFiltrosEstrellas = By.xpath("(//div[@class=\"sc-idiyUo bpGviy custom-radio-check\"])[2]");
+    By checkboxParaSeleccionar5Estrellas = By.xpath("(//div[@class=\"sc-kLLXSd FwIKF\"])[1]");
     By botonAplicarPara5Estrellas = By.xpath("//button[normalize-space()=\"Aplicar\"]");
 
     By botonVueloHotel = By.xpath("(//button[@class=\"display-1fkqqxl-TabButton\"])[2]");
@@ -33,7 +33,7 @@ public class HotelesHomePage extends SeleniumWrapper {
     By desplegableDePasajerosHotelesVUELOS = By.xpath("(//button[@class=\"display-vu9q0w-Dropdown-styled\"])[2]");
     By clickearParaRestarPasajerosHotelesVUELOS = By.xpath("//button[@class=\"display-17x5pjv-Counter-styled\"][1]");
 
-    By clickearLaPrimeraOpcionDeHotelesVUELOS = By.xpath("(//div[@class=\"sc-jIAOiI dgepDH\"]//a)");
+    By clickearLaPrimeraOpcionDeHotelesVUELOS = By.xpath("(//div[@class=\"sc-gSAPjG bJVsvm\"]//a)");
     By clickearLaPrimeraOpcionDeHotelesVUELOSOtraVez = By.xpath("//a[@class=\"sc-idiyUo hAMAFs\"]");
     By clickearEnBotonContinuarAbajoEnOpcionDeElegir = By.xpath("(//button[@class=\"Button-sc-1bbve8d-0 RoomPanelMealPlan___StyledButton-sc-u6tmcf-19 gRWIbt fjRCLj\"])[1]");
     By clickearEnEligeTRAVELExtra = By.xpath("//button[@class=\"Button-sc-1bbve8d-0 hFahzb\"]");
@@ -52,7 +52,7 @@ public class HotelesHomePage extends SeleniumWrapper {
 
     By mensajeDondeFaltaTexto = By.xpath("//span[@class=\"display-1jbu58d-ValidationMessage-styled-ValidationMessage-styled-ValidationMessage-styled\"]");
 
-    By mensajeAlojamientoParaCualquierDestino = By.xpath("//div[@class=\"sc-gsnTZi cxinWN openx-ui-main-title\"]");
+    By mensajeAlojamientoParaCualquierDestino = By.xpath("//div[@class=\"sc-dkzDqf eLVqTe\"]");
 
     By mensajeParaValidarQueLlegoAlFormulario = By.xpath("//div[@class=\"welcome__claim-title\"]");
 
@@ -90,7 +90,7 @@ public class HotelesHomePage extends SeleniumWrapper {
         return getText(mensajeParaValidarQueEstamosEnLLAMANOS);
     }
     public void capturaPantalla() throws IOException {
-        capturaPantalla("C:\\Users\\florencia.lorenzati\\IdeaProjects\\bc101\\src\\test\\java\\aut\\funcional\\testcases\\capturas","VariosFiltros.png");
+        capturaPantalla("C:\\Users\\lucas.cabral\\IdeaProjects\\bc101\\src\\test\\java\\aut\\funcional\\testcases\\capturas","VariosFiltros.png");
     }
 
     public void HotelesDisponibles(){

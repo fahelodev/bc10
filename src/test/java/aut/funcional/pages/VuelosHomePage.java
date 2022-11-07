@@ -248,7 +248,7 @@ public class VuelosHomePage extends SeleniumWrapper {
     }
 
     public void screenShot() throws IOException {
-        capturaPantalla("C:\\Users\\pehuen.dias\\IdeaProjects\\bc101\\src\\test\\java\\aut\\funcional\\testcases\\capturas","CapturaTest.png");
+        capturaPantalla("C:\\Users\\lucas.cabral\\IdeaProjects\\bc101\\src\\test\\java\\aut\\funcional\\testcases\\capturas","CapturaTest.png");
     }
 
 

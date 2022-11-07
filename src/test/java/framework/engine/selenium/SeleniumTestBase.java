@@ -29,7 +29,7 @@ public class SeleniumTestBase extends DriverFactory{
 
     @AfterEach
     void close(){
-       // driver.quit();
+        driver.quit();
     }
 
 }
