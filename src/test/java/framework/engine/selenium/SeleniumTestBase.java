@@ -25,6 +25,7 @@ public class SeleniumTestBase extends DriverFactory{
         String browserName = properties.getProperty("browser");
         driverFactory = new DriverFactory();
         driver = driverFactory.inicializarDriver(browserName);
+
     }
 
     @AfterEach
