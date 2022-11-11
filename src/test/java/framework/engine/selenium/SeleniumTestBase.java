@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class SeleniumTestBase extends DriverFactory{
@@ -14,18 +15,20 @@ public class SeleniumTestBase extends DriverFactory{
     WebDriver driver;
     static Properties properties;
 
+
     @BeforeAll
     public static void LoadProperties() {
         properties = LoadProperties.loadProperties();
     }
 
     @BeforeEach
-    void webDriverSetup(){
+    void webDriverSetup() {
         String browserName = properties.getProperty("browser");
         driverFactory = new DriverFactory();
         driver = driverFactory.inicializarDriver(browserName);
 
     }
+
 
     @AfterEach
     void close(){

@@ -1,4 +1,5 @@
 package framework.engine.selenium;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,19 +13,21 @@ public class DriverFactory {
 
     /**
      * inicializa el WebDriver segun la seleccion del browser
+     *
      * @param browser: chrome | firefox
      * @return Webdriver
      */
-    public WebDriver inicializarDriver(String browser){
 
-        System.out.println("browser value is: "+browser);
+    public WebDriver inicializarDriver(String browser) {
+
+        System.out.println("browser value is: " + browser);
         switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 hiloLocal.set(new FirefoxDriver());
                 getDriver().manage().deleteAllCookies();
                 getDriver().manage().window().maximize();
-                getDriver().manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
+                getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
                 return getDriver();
             case "edge":
                 WebDriverManager.edgedriver().setup();
@@ -53,12 +56,12 @@ public class DriverFactory {
     }
 
 
-
     /**
      * retorna el WebDriver desde el ThreadLocal
+     *
      * @return WebDriver
      */
-    public static synchronized WebDriver getDriver(){
+    public static synchronized WebDriver getDriver() {
         return hiloLocal.get();
     }
 }
