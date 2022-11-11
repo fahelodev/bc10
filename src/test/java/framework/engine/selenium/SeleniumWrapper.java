@@ -1,4 +1,7 @@
 package framework.engine.selenium;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -6,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -26,7 +31,7 @@ import java.util.Set;
 
 public class SeleniumWrapper {
 
-    private final WebDriver driver;
+    public final WebDriver driver;
 
     //Constructor Base
     public SeleniumWrapper(WebDriver driver) {
@@ -42,11 +47,43 @@ public class SeleniumWrapper {
         return driver.findElements(locator);
     }
 
+
+    public void cambiarPag (){
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(0));
+        driver.close();
+        driver.switchTo().window(tabs2.get(1));}
+
+    public void waitElemtToBeClickable(int tiempo,By locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(tiempo));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void implicitlyWaitOfMillis(int millis){
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(millis));
+    }
+
+
+    public void scroll(int xPixeles, int yxPixeles){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy("+xPixeles+","+yxPixeles+")");
+    }
+    public String getText (By locator){
+        return driver.findElement(locator).getText();
+    }
+
+    public void setSize(int width, int height){
+        driver.manage().window().setSize(new Dimension(width, height));
+    }
+
+    public void write(String inputText, By locator){
+
     public String getText(By locator) {
         return driver.findElement(locator).getText();
     }
 
     public void write(String inputText, By locator) {
+
         isDisplayed(locator);
         driver.findElement(locator).sendKeys(inputText);
     }
@@ -158,6 +195,11 @@ public class SeleniumWrapper {
     public String getUrlTitle() {
         return driver.getTitle();
     }
+
+
+    public void capturaPantalla(String direccion, String s) throws IOException {
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile,new File(direccion,s));}
 
     public void cambiarPag (){
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
@@ -333,6 +375,8 @@ public class SeleniumWrapper {
     }
     public void esperaImplicitaMillis(int timeEspera){
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(timeEspera));
+
     }
+
 
 }

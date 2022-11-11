@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 import java.util.Properties;
 
-public class SeleniumTestBase {
+public class SeleniumTestBase extends DriverFactory{
 
     private DriverFactory driverFactory;
     WebDriver driver;
@@ -26,11 +26,12 @@ public class SeleniumTestBase {
         String browserName = properties.getProperty("browser");
         driverFactory = new DriverFactory();
         driver = driverFactory.inicializarDriver(browserName);
+
     }
 
 
     @AfterEach
-    void close() {
+    void close(){
         driver.quit();
     }
 

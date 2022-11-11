@@ -31,9 +31,9 @@ public class VuelosHomePage extends SeleniumWrapper {
     By liQRMesCumple = By.xpath("//option[@class='select-placeholder']");
     By btnNov = By.xpath("//option[@value='11']");
     By tbQRAnioCumple = By.xpath("//input[@placeholder='AAAA']");
-    By liTipoDocumento= By.xpath("//input[@aria-label='groups.1.travellers.1.documentType']");
+//    By liTipoDocumento= By.xpath("//input[@aria-label='groups.1.travellers.1.documentType']");
     By laErrorEmail= By.xpath("//label[normalize-space()='Introduce un email válido']");
-    By tbDNI=By.xpath("//input[@name='groups.1.travellers.1.documentNumber']");
+//    By tbDNI=By.xpath("//input[@name='groups.1.travellers.1.documentNumber']");
     By btnSig = By.xpath("//button[@class='btn btn-cta lead-generation-submit__btn ']");
     By laMasBarato = By.xpath("(//div[@class='sorting-tabs-view__amount'])[5]");
     //By liPrimerElemento = By.xpath("(//span[@color='var(--lmn-ds-colors-primary-400)'])[1]");
@@ -248,7 +248,7 @@ public class VuelosHomePage extends SeleniumWrapper {
     }
 
     public void screenShot() throws IOException {
-        capturaPantalla();
+        capturaPantalla("C:\\Users\\lucas.cabral\\IdeaProjects\\bc101\\src\\test\\java\\aut\\funcional\\testcases\\capturas","CapturaTest.png");
     }
 
 
