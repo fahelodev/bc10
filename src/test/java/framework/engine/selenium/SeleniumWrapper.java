@@ -1,5 +1,13 @@
 package framework.engine.selenium;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+import java.util.ArrayList;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -151,6 +159,15 @@ public class SeleniumWrapper {
         return driver.getTitle();
     }
 
+    public void cambiarPag (){
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(0));
+        driver.close();
+        driver.switchTo().window(tabs2.get(1));}
+
+    public void waitElemtToBeClickable(int tiempo,By locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(tiempo));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
 
     public void seleccionFechaIda(int diai, int mesi, int anhoi, int diav, int mesv, int anhov, By locator) {
         if (anhoi == (2022)) {
